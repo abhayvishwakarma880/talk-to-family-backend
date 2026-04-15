@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # 💬 CHAT APIs — curl commands
-# Base URL: http://localhost:3600/api/chat
+# Base URL: https://talk-to-family-backend.onrender.com/api/chat
 # 🔒 All routes require Authorization header with Bearer token
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -12,7 +12,7 @@
 # GET /api/chat/search?phone=9876543210
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X GET "http://localhost:3600/api/chat/search?phone=9876543210" \
+curl -X GET "https://talk-to-family-backend.onrender.com/api/chat/search?phone=9876543210" \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -21,7 +21,7 @@ curl -X GET "http://localhost:3600/api/chat/search?phone=9876543210" \
 # POST /api/chat
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/chat \
+curl -X POST https://talk-to-family-backend.onrender.com/api/chat \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -d '{
@@ -34,7 +34,7 @@ curl -X POST http://localhost:3600/api/chat \
 # GET /api/chat
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X GET http://localhost:3600/api/chat \
+curl -X GET https://talk-to-family-backend.onrender.com/api/chat \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -43,5 +43,5 @@ curl -X GET http://localhost:3600/api/chat \
 # DELETE /api/chat/:chatId
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X DELETE http://localhost:3600/api/chat/CHAT_ID_HERE \
+curl -X DELETE https://talk-to-family-backend.onrender.com/api/chat/CHAT_ID_HERE \
   -H "Authorization: Bearer <YOUR_TOKEN>"

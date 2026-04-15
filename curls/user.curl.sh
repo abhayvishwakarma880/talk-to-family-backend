@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # 👤 USER APIs — curl commands
-# Base URL: http://localhost:3600/api/user
+# Base URL: https://talk-to-family-backend.onrender.com/api/user
 # 🔒 All routes require Authorization header with Bearer token
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -12,7 +12,7 @@
 # GET /api/user/profile
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X GET http://localhost:3600/api/user/profile \
+curl -X GET https://talk-to-family-backend.onrender.com/api/user/profile \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -21,7 +21,7 @@ curl -X GET http://localhost:3600/api/user/profile \
 # PUT /api/user/profile
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X PUT http://localhost:3600/api/user/profile \
+curl -X PUT https://talk-to-family-backend.onrender.com/api/user/profile \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -d '{
@@ -37,7 +37,7 @@ curl -X PUT http://localhost:3600/api/user/profile \
 # Content-Type: multipart/form-data
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X PUT http://localhost:3600/api/user/avatar \
+curl -X PUT https://talk-to-family-backend.onrender.com/api/user/avatar \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -F "file=@/path/to/your/image.jpg"
 
@@ -47,7 +47,7 @@ curl -X PUT http://localhost:3600/api/user/avatar \
 # DELETE /api/user/avatar
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X DELETE http://localhost:3600/api/user/avatar \
+curl -X DELETE https://talk-to-family-backend.onrender.com/api/user/avatar \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -56,7 +56,7 @@ curl -X DELETE http://localhost:3600/api/user/avatar \
 # PUT /api/user/change-password
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X PUT http://localhost:3600/api/user/change-password \
+curl -X PUT https://talk-to-family-backend.onrender.com/api/user/change-password \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -d '{
@@ -70,7 +70,7 @@ curl -X PUT http://localhost:3600/api/user/change-password \
 # PUT /api/user/privacy
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X PUT http://localhost:3600/api/user/privacy \
+curl -X PUT https://talk-to-family-backend.onrender.com/api/user/privacy \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -d '{
@@ -88,5 +88,5 @@ curl -X PUT http://localhost:3600/api/user/privacy \
 # DELETE /api/user/account
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X DELETE http://localhost:3600/api/user/account \
+curl -X DELETE https://talk-to-family-backend.onrender.com/api/user/account \
   -H "Authorization: Bearer <YOUR_TOKEN>"

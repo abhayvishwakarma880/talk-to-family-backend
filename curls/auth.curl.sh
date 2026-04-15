@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # 📲 AUTH APIs — curl commands
-# Base URL: http://localhost:3600/api/auth
+# Base URL: https://talk-to-family-backend.onrender.com/api/auth
 # ═══════════════════════════════════════════════════════════════════════════════
 
 
@@ -9,7 +9,7 @@
 # POST /api/auth/send-otp
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/auth/send-otp \
+curl -X POST https://talk-to-family-backend.onrender.com/api/auth/send-otp \
   -H "Content-Type: application/json" \
   -d '{
     "phone": "+919876543210"
@@ -21,7 +21,7 @@ curl -X POST http://localhost:3600/api/auth/send-otp \
 # POST /api/auth/verify-otp
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/auth/verify-otp \
+curl -X POST https://talk-to-family-backend.onrender.com/api/auth/verify-otp \
   -H "Content-Type: application/json" \
   -d '{
     "phone": "+919876543210",
@@ -34,7 +34,7 @@ curl -X POST http://localhost:3600/api/auth/verify-otp \
 # POST /api/auth/register
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/auth/register \
+curl -X POST https://talk-to-family-backend.onrender.com/api/auth/register \
   -H "Content-Type: application/json" \
   -d '{
     "phone": "+919876543210",
@@ -49,7 +49,7 @@ curl -X POST http://localhost:3600/api/auth/register \
 # POST /api/auth/login
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/auth/login \
+curl -X POST https://talk-to-family-backend.onrender.com/api/auth/login \
   -H "Content-Type: application/json" \
   -d '{
     "phone": "+919876543210",
@@ -62,7 +62,7 @@ curl -X POST http://localhost:3600/api/auth/login \
 # POST /api/auth/resend-otp
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/auth/resend-otp \
+curl -X POST https://talk-to-family-backend.onrender.com/api/auth/resend-otp \
   -H "Content-Type: application/json" \
   -d '{
     "phone": "+919876543210"

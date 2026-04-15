@@ -1,6 +1,6 @@
 # ═══════════════════════════════════════════════════════════════════════════════
 # 📨 MESSAGE APIs — curl commands
-# Base URL: http://localhost:3600/api/message
+# Base URL: https://talk-to-family-backend.onrender.com/api/message
 # 🔒 All routes require Authorization header with Bearer token
 # ═══════════════════════════════════════════════════════════════════════════════
 
@@ -12,7 +12,7 @@
 # POST /api/message
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/message \
+curl -X POST https://talk-to-family-backend.onrender.com/api/message \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -d '{
@@ -27,7 +27,7 @@ curl -X POST http://localhost:3600/api/message \
 # POST /api/message
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/message \
+curl -X POST https://talk-to-family-backend.onrender.com/api/message \
   -H "Content-Type: application/json" \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -d '{
@@ -42,7 +42,7 @@ curl -X POST http://localhost:3600/api/message \
 # POST /api/message (multipart/form-data)
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/message \
+curl -X POST https://talk-to-family-backend.onrender.com/api/message \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -F "chatId=CHAT_ID_HERE" \
   -F "content=Check this out! 📎" \
@@ -55,7 +55,7 @@ curl -X POST http://localhost:3600/api/message \
 # POST /api/message (multipart/form-data)
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X POST http://localhost:3600/api/message \
+curl -X POST https://talk-to-family-backend.onrender.com/api/message \
   -H "Authorization: Bearer <YOUR_TOKEN>" \
   -F "chatId=CHAT_ID_HERE" \
   -F "file=@/path/to/document.pdf"
@@ -66,7 +66,7 @@ curl -X POST http://localhost:3600/api/message \
 # GET /api/message/:chatId?page=1&limit=50
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X GET "http://localhost:3600/api/message/CHAT_ID_HERE?page=1&limit=50" \
+curl -X GET "https://talk-to-family-backend.onrender.com/api/message/CHAT_ID_HERE?page=1&limit=50" \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -75,7 +75,7 @@ curl -X GET "http://localhost:3600/api/message/CHAT_ID_HERE?page=1&limit=50" \
 # PUT /api/message/read/:chatId
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X PUT http://localhost:3600/api/message/read/CHAT_ID_HERE \
+curl -X PUT https://talk-to-family-backend.onrender.com/api/message/read/CHAT_ID_HERE \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -84,7 +84,7 @@ curl -X PUT http://localhost:3600/api/message/read/CHAT_ID_HERE \
 # DELETE /api/message/:messageId
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X DELETE http://localhost:3600/api/message/MESSAGE_ID_HERE \
+curl -X DELETE https://talk-to-family-backend.onrender.com/api/message/MESSAGE_ID_HERE \
   -H "Authorization: Bearer <YOUR_TOKEN>"
 
 
@@ -93,5 +93,5 @@ curl -X DELETE http://localhost:3600/api/message/MESSAGE_ID_HERE \
 # DELETE /api/message/everyone/:messageId
 # ─────────────────────────────────────────────────────────────────────────────
 
-curl -X DELETE http://localhost:3600/api/message/everyone/MESSAGE_ID_HERE \
+curl -X DELETE https://talk-to-family-backend.onrender.com/api/message/everyone/MESSAGE_ID_HERE \
   -H "Authorization: Bearer <YOUR_TOKEN>"

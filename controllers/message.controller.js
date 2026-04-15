@@ -1,5 +1,7 @@
 import Message from "../models/message.model.js";
 import Chat from "../models/chat.model.js";
+import User from "../models/user.model.js";
+import Notification from "../models/notification.model.js";
 
 // ─── Helper: detect message type from file mimetype ───────────────────────────
 const getMessageType = (mimetype) => {
@@ -103,11 +105,68 @@ export const sendMessage = async (req, res) => {
     const io = req.app.get("io");
     if (io) {
       // Send to all participants in the chat (except sender)
-      chat.participants.forEach((participantId) => {
+      for (const participantId of chat.participants) {
         if (participantId.toString() !== req.user._id.toString()) {
-          io.to(participantId.toString()).emit("newMessage", message);
+          const receiverIdStr = participantId.toString();
+
+          // Check if receiver is online
+          const receiver = await User.findById(participantId).select(
+            "isOnline socketId notificationEnabled"
+          );
+
+          // 🔔 Create notification in DB
+          const notificationBody =
+            message.messageType === "text"
+              ? message.content.substring(0, 100)
+              : `📎 Sent ${message.messageType === "image" ? "an image" : message.messageType === "video" ? "a video" : message.messageType === "audio" ? "an audio" : "a file"}`;
+
+          const notification = await Notification.create({
+            recipient: participantId,
+            sender: req.user._id,
+            type: "new_message",
+            title: req.user.name,
+            body: notificationBody,
+            chat: chatId,
+            message: message._id,
+          });
+
+          // Get unread count for this receiver
+          const unreadCount = await Notification.countDocuments({
+            recipient: participantId,
+            isRead: false,
+          });
+
+          if (receiver && receiver.isOnline && receiver.socketId) {
+            // Receiver is online → mark as "delivered" immediately
+            await Message.findByIdAndUpdate(message._id, {
+              $set: { status: "delivered" },
+            });
+            message = await Message.findById(message._id)
+              .populate("sender", "name phone avatar")
+              .populate("replyTo", "content sender messageType");
+
+            // Send message to receiver
+            io.to(receiverIdStr).emit("newMessage", message);
+
+            // Send notification event to receiver
+            io.to(receiverIdStr).emit("newNotification", {
+              notification: await notification.populate("sender", "name phone avatar"),
+              unreadCount,
+            });
+
+            // Notify sender → ✅✅ (double grey tick — delivered)
+            io.to(req.user._id.toString()).emit("messageDelivered", {
+              messageId: message._id,
+              chatId,
+              deliveredTo: receiverIdStr,
+            });
+          } else {
+            // Receiver is offline → status stays "sent" (single grey tick)
+            io.to(receiverIdStr).emit("newMessage", message);
+            // Notification saved in DB — will be fetched when receiver comes online
+          }
         }
-      });
+      }
     }
 
     return res.status(201).json({
