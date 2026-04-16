@@ -249,11 +249,10 @@ userSchema.index({ isOnline: 1 });
 userSchema.index({ isDeleted: 1, isBlocked: 1 }); // Common query filter
 
 // ─── Pre-save Hook: Hash Password ─────────────────────────────────────────────
-userSchema.pre("save", async function (next) {
+userSchema.pre("save", async function () {
   // Only hash if password is new or modified
-  if (!this.isModified("password") || !this.password) return next();
+  if (!this.isModified("password") || !this.password) return;
   this.password = await bcrypt.hash(this.password, 12);
-  next();
 });
 
 // ─── Instance Method: Compare Password ────────────────────────────────────────
