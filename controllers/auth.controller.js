@@ -10,6 +10,7 @@ import generateToken from "../utils/generateToken.js";
 export const sendOtpController = async (req, res) => {
   try {
     const { phone } = req.body;
+    console.log(`📩 OTP Request for: ${phone}`);
 
     if (!phone) {
       return res.status(400).json({
@@ -38,20 +39,20 @@ export const sendOtpController = async (req, res) => {
       });
     }
 
-    // Send OTP via Twilio SMS
+    // Send OTP (Prints to console in dev mode)
     await sendOtp(phone, otp);
 
     return res.status(200).json({
       success: true,
       message: "OTP sent successfully",
-      isExistingUser: !!user.isVerified, // Tell frontend if user needs to register or login
-      otp, // ⚠️ DEV ONLY — Remove in production
+      isExistingUser: !!user.isVerified,
+      otp, // ⚠️ DEV ONLY
     });
   } catch (error) {
-    console.error("❌ Send OTP Error:", error.message);
+    console.error("❌ Send OTP Error Detail:", error);
     return res.status(500).json({
       success: false,
-      message: error.message || "Failed to send OTP",
+      message: `Server Error: ${error.message || "Failed to send OTP"}`,
     });
   }
 };
